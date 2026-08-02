@@ -19,7 +19,7 @@ cd ..
 git clone https://github.com/shadowsocks/shadowsocks-libev --depth=1
 cd shadowsocks-libev
 git submodule update --init
-./configure --disable-documentation
+cmake .
 make -j4
 gcc $(find src/ -name "ss_local-*.o") $(find . -name "*.a") -o ss-local -static -lpcre -lmbedtls -lmbedcrypto -lev -lsodium -s
 mv ss-local ../base/tools/clients/
