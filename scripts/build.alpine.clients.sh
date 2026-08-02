@@ -33,7 +33,7 @@ sed -i "s/^const/extern const/g" src/http.h
 ./autogen.sh
 ./configure --disable-documentation
 make -j4
-gcc $(find src/ -name "ss_local-*.o") $(find . -name "*.a") -o ssr-local -static -lpcre -lssl -lcrypto -lev -lsodium -s
+g++ $(find src/CMakeFiles/ss-local.dir -name "*.o") -o ssr-local -static -lpcre -lssl -lcrypto -lev -lsodium -s
 mv ssr-local ../base/tools/clients/
 cd ..
 
