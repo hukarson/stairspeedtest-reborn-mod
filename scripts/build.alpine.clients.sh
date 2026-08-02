@@ -19,7 +19,6 @@ cd ..
 git clone https://github.com/shadowsocks/shadowsocks-libev --depth=1
 cd shadowsocks-libev
 git submodule update --init
-./autogen.sh
 ./configure --disable-documentation
 make -j4
 gcc $(find src/ -name "ss_local-*.o") $(find . -name "*.a") -o ss-local -static -lpcre -lmbedtls -lmbedcrypto -lev -lsodium -s
