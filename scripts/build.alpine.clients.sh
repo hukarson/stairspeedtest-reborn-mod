@@ -21,7 +21,7 @@ cd shadowsocks-libev
 git submodule update --init
 cmake .
 make -j4
-gcc $(find src/ -name "ss_local-*.o") $(find . -name "*.a") -o ss-local -static -lpcre -lmbedtls -lmbedcrypto -lev -lsodium -s
+g++ $(find src/CMakeFiles/ss-local.dir -name "*.o") -o ss-local -static -lpcre -lmbedtls -lmbedcrypto -lev -lsodium -s
 mv ss-local ../base/tools/clients/
 cd ..
 
@@ -33,7 +33,7 @@ sed -i "s/^const/extern const/g" src/http.h
 ./autogen.sh
 ./configure --disable-documentation
 make -j4
-g++ $(find src/CMakeFiles/ss-local.dir -name "*.o") -o ssr-local -static -lpcre -lssl -lcrypto -lev -lsodium -s
+gcc $(find src/ -name "ss_local-*.o") $(find . -name "*.a") -o ssr-local -static -lpcre -lssl -lcrypto -lev -lsodium -s
 mv ssr-local ../base/tools/clients/
 cd ..
 
