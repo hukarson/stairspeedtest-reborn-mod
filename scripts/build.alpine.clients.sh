@@ -21,7 +21,7 @@ cd shadowsocks-libev
 git submodule update --init
 cmake .
 make -j4
-gcc $(find src/CMakeFiles/ss-local.dir -name "*.o") $(find . -name "*.a") -o ss-local -static -lpcre -lpcre2 -lmbedtls -lmbedcrypto -lev -lsodium -s
+gcc $(find src/CMakeFiles/ss-local.dir -name "*.o") $(find . -name "*.a") -o ss-local -static -lpcre2-8 -lmbedtls -lmbedcrypto -lev -lsodium -s
 mv ss-local ../base/tools/clients/
 cd ..
 
