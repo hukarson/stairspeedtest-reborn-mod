@@ -3,7 +3,7 @@ mkdir base/tools/clients
 
 set -xe
 
-apk add gcc g++ build-base linux-headers cmake make autoconf automake libtool curl pkg-config
+apk add gcc g++ build-base linux-headers cmake make autoconf automake libtool curl
 apk add openssl-dev openssl-libs-static libev-dev pcre-dev libsodium-dev libsodium-static c-ares-dev libevent-dev libevent-static mbedtls-dev mbedtls-static boost-dev boost-static mariadb-dev mariadb-static pcre2-dev asciidoc xmlto
 
 git clone https://github.com/shadowsocks/simple-obfs --depth=1
