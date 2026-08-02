@@ -8,9 +8,11 @@
 #include <iomanip>
 #include <algorithm>
 #include <numeric>
+#include <locale>
 
 #ifdef _WIN32
 #include <conio.h>
+#include <windows.h>
 #else
 #include <termios.h>
 #endif // _WIN32
@@ -33,6 +35,8 @@
 using namespace std::chrono;
 
 #define MAX_FILE_SIZE 100 * 1024 * 1024
+
+std::string user_lang = "english";
 
 //use for command argument
 bool rpcmode = false;
@@ -995,6 +999,28 @@ void setcd(std::string &file)
 
 int main(int argc, char* argv[])
 {
+    char choselang[40];
+#ifdef _WIN32
+    LANGID langId = GetUserDefaultUILanguage();
+    wchar_t langName[LOCALE_NAME_MAX_LENGTH];
+
+    if (GetLocaleInfoEx(LOCALE_NAME_USER_DEFAULT, LOCALE_SISO639LANGNAME, langName, LOCALE_NAME_MAX_LENGTH))
+    {
+        strcpy(choselang, langName);
+    }
+#else
+     setlocale(LC_ALL, "");
+     char *langName = setlocale(LC_ALL, NULL);
+     if (langName != NULL) {
+        strcpy(choselang, langName);
+     }
+#endif // _WIN32
+
+     if (strncmp(choselang, "zh_CN", 5) == 0 || strncmp(choselang, "zh", 2) == 0) {
+        std::string user_lang = "zh_cn";
+     }
+     writeLog(LOG_TYPE_INFO, "language: " + user_lang);
+
     std::vector<nodeInfo> nodes;
     nodeInfo node;
     std::string link;
