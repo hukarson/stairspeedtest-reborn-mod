@@ -25,7 +25,7 @@ cd ..
 
 git clone https://github.com/pngwriter/pngwriter --depth=1
 cd pngwriter > /dev/null
-cmake -DCMAKE_FIND_FRAMEWORK=NEVER -DCMAKE_INSTALL_PREFIX="$HOMEBREW_PREFIX" . > /dev/null
+cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DCMAKE_FIND_FRAMEWORK=NEVER -DCMAKE_INSTALL_PREFIX="$HOMEBREW_PREFIX" . > /dev/null
 make install -j8 > /dev/null
 cd ..
 
