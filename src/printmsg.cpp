@@ -7,8 +7,6 @@
 #include "printout.h"
 #include "version.h"
 
-extern std::string user_lang;
-
 //define print-out messages
 struct LOOKUP_ITEM
 {
@@ -16,6 +14,7 @@ struct LOOKUP_ITEM
     std::string info;
 };
 
+/*
 LOOKUP_ITEM ZH_SPEEDTEST_MESSAGES[] =
 {
     {SPEEDTEST_MESSAGE_EOF, "\n测速已完成. 请按任意键退出程序..."},
@@ -62,6 +61,7 @@ LOOKUP_ITEM ZH_SPEEDTEST_MESSAGES[] =
     {SPEEDTEST_ERROR_SUBFETCHERR, "无法获取直连订阅配置. 尝试用系统代理...\n"},
     {SPEEDTEST_ERROR_GEOIPERR, "无法获取 GeoIP 信息. 跳过...\n"}
 };
+*/
 
 LOOKUP_ITEM SPEEDTEST_MESSAGES[] =
 {
@@ -110,6 +110,7 @@ LOOKUP_ITEM SPEEDTEST_MESSAGES[] =
     {SPEEDTEST_ERROR_GEOIPERR, "Cannot fetch GeoIP information. Skipping...\n"}
 };
 
+/*
 LOOKUP_ITEM ZH_SPEEDTEST_MESSAGES_RPC[] =
 {
     {SPEEDTEST_MESSAGE_WELCOME, "{\"信息\":\"初始化\"}\n"},
@@ -157,7 +158,7 @@ LOOKUP_ITEM ZH_SPEEDTEST_MESSAGES_RPC[] =
     {SPEEDTEST_ERROR_SUBFETCHERR, "{\"信息\":\"错误\",\"原因\":\"子获取错误\"}\n"},
     {SPEEDTEST_ERROR_GEOIPERR, "{\"信息\":\"错误\",\"原因\":\"GeoIP错误\",\"id\":?0?}\n"}
 };
-
+*/
 
 LOOKUP_ITEM SPEEDTEST_MESSAGES_RPC[] =
 {
@@ -223,15 +224,9 @@ std::string lookUp(int index, LOOKUP_ITEM *items)
 std::string lookUp(int index, bool rpcmode)
 {
     if(rpcmode)
-        if (user_lang == "zh_cn")
-            return lookUp(index, ZH_SPEEDTEST_MESSAGES_RPC);
-	else
-            return lookUp(index, SPEEDTEST_MESSAGES_RPC);
+        return lookUp(index, SPEEDTEST_MESSAGES_RPC);
     else
-	if (user_lang == "zh_cn")
-            return lookUp(index, ZH_SPEEDTEST_MESSAGES);
-	else
-            return lookUp(index, SPEEDTEST_MESSAGES);
+        return lookUp(index, SPEEDTEST_MESSAGES);
 }
 
 /*
